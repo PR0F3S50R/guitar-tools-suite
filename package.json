@@ -1,0 +1,35 @@
+{
+  "name": "guitar-tools-suite",
+  "version": "1.0.0",
+  "description": "A comprehensive mobile toolkit for guitar players",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site - use a local server'",
+    "sync": "npx cap sync",
+    "open:android": "npx cap open android",
+    "android:build": "cd android && ./gradlew assembleDebug",
+    "android:run": "cd android && ./gradlew installDebug",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "keywords": [
+    "guitar",
+    "tuner",
+    "metronome",
+    "chords",
+    "music"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/haptics": "^5.0.6",
+    "@capacitor/keyboard": "^5.0.6",
+    "@capacitor/status-bar": "^5.0.6"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.5.1"
+  }
+}

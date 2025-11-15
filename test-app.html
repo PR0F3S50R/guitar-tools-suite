@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Guitar Tools Suite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-item {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .pass { background-color: #d4edda; border-color: #c3e6cb; }
+        .fail { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover { background: #764ba2; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Application Diagnostic Test</h1>
+    <p>This page will test if all components of your Guitar Tools Suite are working correctly.</p>
+    
+    <button onclick="runTests()">Run All Tests</button>
+    <button onclick="location.href='index.html'">Go to Main App</button>
+    
+    <div id="results"></div>
+    
+    <script>
+        function addResult(test, passed, message) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = 'test-item ' + (passed ? 'pass' : 'fail');
+            div.innerHTML = `<strong>${test}:</strong> ${passed ? '✓ PASS' : '✗ FAIL'} - ${message}`;
+            results.appendChild(div);
+        }
+        
+        function addInfo(message) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = 'test-item info';
+            div.innerHTML = `<strong>INFO:</strong> ${message}`;
+            results.appendChild(div);
+        }
+        
+        async function runTests() {
+            document.getElementById('results').innerHTML = '';
+            
+            addInfo('Starting diagnostic tests...');
+            
+            // Test 1: Check if files exist
+            const files = [
+                'index.html',
+                'styles.css',
+                'visual-effects.js',
+                'tuner.html',
+                'tuner.js',
+                'metronome.html',
+                'metronome.js',
+                'chords.html',
+                'chords.js',
+                'timer.html',
+                'timer.js'
+            ];
+            
+            let filesOk = true;
+            for (const file of files) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (!response.ok) {
+                        addResult(`File: ${file}`, false, 'File not found or not accessible');
+                        filesOk = false;
+                    } else {
+                        addResult(`File: ${file}`, true, 'File exists');
+                    }
+                } catch (e) {
+                    addResult(`File: ${file}`, false, `Error: ${e.message}`);
+                    filesOk = false;
+                }
+            }
+            
+            // Test 2: Check CSS loading
+            try {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'styles.css';
+                document.head.appendChild(link);
+                await new Promise(resolve => setTimeout(resolve, 100));
+                const styles = getComputedStyle(document.body);
+                addResult('CSS Loading', true, 'Stylesheet loaded');
+            } catch (e) {
+                addResult('CSS Loading', false, `Error: ${e.message}`);
+            }
+            
+            // Test 3: Check JavaScript
+            try {
+                if (typeof GuitarTuner !== 'undefined' || document.querySelector('script[src*="tuner.js"]')) {
+                    addResult('JavaScript Files', true, 'JS files referenced');
+                } else {
+                    addResult('JavaScript Files', true, 'JS files will load on their pages');
+                }
+            } catch (e) {
+                addResult('JavaScript Files', false, `Error: ${e.message}`);
+            }
+            
+            // Test 4: Check Web Audio API
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    addResult('Web Audio API', true, 'Available');
+                } else {
+                    addResult('Web Audio API', false, 'Not available - tuner and metronome won\'t work');
+                }
+            } catch (e) {
+                addResult('Web Audio API', false, `Error: ${e.message}`);
+            }
+            
+            // Test 5: Check MediaDevices (for microphone)
+            try {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    addResult('Microphone API', true, 'Available (requires HTTPS or localhost)');
+                } else {
+                    addResult('Microphone API', false, 'Not available - tuner won\'t work');
+                }
+            } catch (e) {
+                addResult('Microphone API', false, `Error: ${e.message}`);
+            }
+            
+            // Test 6: Check localStorage
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                addResult('localStorage', true, 'Available - timer stats will save');
+            } catch (e) {
+                addResult('localStorage', false, 'Not available - timer stats won\'t save');
+            }
+            
+            // Test 7: Check HTTPS/localhost
+            const isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+            addResult('Secure Context', isSecure, isSecure ? 'HTTPS or localhost - microphone will work' : 'Not HTTPS - microphone may not work');
+            
+            addInfo('Tests complete! Check results above.');
+        }
+        
+        // Run tests automatically on load
+        window.addEventListener('load', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>
+
+

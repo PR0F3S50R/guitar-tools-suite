@@ -1,0 +1,12 @@
+{
+  "appId": "com.guitartools.suite",
+  "appName": "Guitar Tools Suite",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}
+

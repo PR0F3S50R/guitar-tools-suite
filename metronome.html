@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Metronome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="app-page">
+            <a href="index.html" class="back-button">← Back to Home</a>
+            <h1>⏱️ Metronome</h1>
+            
+            <div class="metronome-container">
+                <div class="bpm-control">
+                    <div class="bpm-display" id="bpmDisplay">120</div>
+                    <input type="range" min="40" max="220" value="120" class="bpm-slider" id="bpmSlider">
+                    <div class="bpm-buttons">
+                        <button class="bpm-button" data-bpm="60">60</button>
+                        <button class="bpm-button" data-bpm="80">80</button>
+                        <button class="bpm-button" data-bpm="100">100</button>
+                        <button class="bpm-button" data-bpm="120">120</button>
+                        <button class="bpm-button" data-bpm="140">140</button>
+                        <button class="bpm-button" data-bpm="160">160</button>
+                        <button class="bpm-button" data-bpm="180">180</button>
+                    </div>
+                </div>
+                
+                <div class="time-signature">
+                    <label for="timeSignature">Time Signature: </label>
+                    <select id="timeSignature">
+                        <option value="4/4">4/4</option>
+                        <option value="3/4">3/4</option>
+                        <option value="2/4">2/4</option>
+                        <option value="6/8">6/8</option>
+                    </select>
+                </div>
+                
+                <div class="beat-indicator" id="beatIndicator">●</div>
+                
+                <button class="tune-button" id="startButton">Start</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="visual-effects.js"></script>
+    <script src="metronome.js"></script>
+</body>
+</html>
+

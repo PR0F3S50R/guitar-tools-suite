@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Guitar Tuner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="app-page">
+            <a href="index.html" class="back-button">← Back to Home</a>
+            <h1>🎵 Guitar Tuner</h1>
+            
+            <div class="tuner-container">
+                <div class="string-selector">
+                    <button class="string-button active" data-string="E2">E (6th)</button>
+                    <button class="string-button" data-string="A2">A (5th)</button>
+                    <button class="string-button" data-string="D3">D (4th)</button>
+                    <button class="string-button" data-string="G3">G (3rd)</button>
+                    <button class="string-button" data-string="B3">B (2nd)</button>
+                    <button class="string-button" data-string="E4">E (1st)</button>
+                </div>
+                
+                <div class="note-display" id="noteDisplay">--</div>
+                <div class="frequency-display" id="frequencyDisplay">0 Hz</div>
+                
+                <div class="audio-level-indicator" id="audioLevelIndicator" style="display: none;">
+                    <div class="audio-level-bar" id="audioLevelBar"></div>
+                </div>
+                
+                <div class="tuning-indicator">
+                    <div class="tuning-bar" id="tuningBar"></div>
+                    <div class="tuning-markers">
+                        <div class="marker"></div>
+                        <div class="marker"></div>
+                        <div class="marker center"></div>
+                        <div class="marker"></div>
+                        <div class="marker"></div>
+                    </div>
+                </div>
+                
+                <div id="tuningStatus" style="font-size: 1.2em; margin: 20px 0; color: #666;">
+                    Click "Start Tuning" to begin
+                </div>
+                
+                <button class="tune-button" id="tuneButton">Start Tuning</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="visual-effects.js"></script>
+    <script src="tuner.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Practice Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="app-page">
+            <a href="index.html" class="back-button">← Back to Home</a>
+            <h1>⏰ Practice Timer</h1>
+            
+            <div class="timer-container">
+                <div class="timer-display" id="timerDisplay">00:00:00</div>
+                
+                <div class="preset-buttons">
+                    <button class="preset-button" data-minutes="5">5 min</button>
+                    <button class="preset-button" data-minutes="10">10 min</button>
+                    <button class="preset-button" data-minutes="15">15 min</button>
+                    <button class="preset-button" data-minutes="30">30 min</button>
+                    <button class="preset-button" data-minutes="60">60 min</button>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="timer-button" id="startButton">Start</button>
+                    <button class="timer-button stop" id="stopButton">Stop</button>
+                    <button class="timer-button" id="resetButton">Reset</button>
+                </div>
+                
+                <div class="stats">
+                    <h3>Session Statistics</h3>
+                    <p>Today's Practice Time: <span id="todayTime">0:00:00</span></p>
+                    <p>Total Practice Time: <span id="totalTime">0:00:00</span></p>
+                    <p>Sessions Completed: <span id="sessionsCount">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="visual-effects.js"></script>
+    <script src="timer.js"></script>
+</body>
+</html>
+

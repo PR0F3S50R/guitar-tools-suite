@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Guitar Tools Suite</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎸 Guitar Tools Suite</h1>
+            <p>Your complete toolkit for guitar practice and learning</p>
+        </header>
+        
+        <nav class="app-grid">
+            <a href="tuner.html" class="app-card">
+                <div class="app-icon">🎵</div>
+                <h2>Guitar Tuner</h2>
+                <p>Tune your guitar with precision</p>
+            </a>
+            
+            <a href="metronome.html" class="app-card">
+                <div class="app-icon">⏱️</div>
+                <h2>Metronome</h2>
+                <p>Keep perfect time</p>
+            </a>
+            
+            <a href="chords.html" class="app-card">
+                <div class="app-icon">🎼</div>
+                <h2>Chord Reference</h2>
+                <p>Learn guitar chords</p>
+            </a>
+            
+            <a href="timer.html" class="app-card">
+                <div class="app-icon">⏰</div>
+                <h2>Practice Timer</h2>
+                <p>Track your practice sessions</p>
+            </a>
+        </nav>
+    </div>
+    
+    <script src="visual-effects.js"></script>
+    <script>
+        // Capacitor initialization (only in Android app, not in web browsers)
+        // This code is safe to ignore in web browsers
+        if (typeof window !== 'undefined' && window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+            // Only runs in native Capacitor app, not in web browsers
+            try {
+                import('@capacitor/app').then(({ App }) => {
+                    App.addListener('backButton', ({ canGoBack }) => {
+                        if (!canGoBack) {
+                            App.exitApp();
+                        } else {
+                            window.history.back();
+                        }
+                    });
+                }).catch(() => {
+                    // Ignore - not in Capacitor environment
+                });
+            } catch (e) {
+                // Ignore - web browser environment
+            }
+        }
+    </script>
+</body>
+</html>
+
